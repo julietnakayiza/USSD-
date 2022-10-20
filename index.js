@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const { response } = require('express');
@@ -6,21 +8,21 @@ const mongoose = ('mongoose');
 const app=express();
 const PORT=8000
 
-const user=require('./model/user')
+const user=require('./models/user')
 
-const database_url='mongodb://localhost:27817/ussd';
-mongoose.connect(database_url)
-const db=mongoose.connection;
-db.on('error',(err)=>{
-  console.log(err)
-})
-db.once('open',()=>{
-  console.log('Database is running,')
-})
+mongoose.connect('mongodb://localhost:27017/ussd');
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log('connected to MongoDB');
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
 
-app.get('/'.replace(req,res)=>{send(body?:any):Response=any,number>
+// app.get('/'.replace(req,res)=>{send(body?:any):Response=any,number>
+//   res.send('Success MESSAGE')
+// })
+app.get('/',(req,res)=>{
   res.send('Success MESSAGE')
 })
 
@@ -80,6 +82,6 @@ if(text !==''){
 
 
 
-app.listen(PORT,{} => {
+app.listen(PORT,() => {
   console.log('app is running on port' + PORT)
 })
