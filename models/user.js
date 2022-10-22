@@ -1,6 +1,21 @@
 const mongoose=require('mongoose');
-const userSchena=mongoose.Schema({
-  Admission_number:String
-})
-const User=mongoose.model('User',userSchena);
+const userSchema=mongoose.Schema({
+    Class: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    Subject: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    Topic: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    timestamps: true,
+});
+const User=mongoose.model('User',userSchema);
 module.exports=User
